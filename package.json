@@ -1,0 +1,57 @@
+{
+  "private": true,
+  "name": "leaguetab",
+  "version": "1.0.0",
+  "description": "LeagueTab",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Ahmed Rangel",
+    "email": "ahmedrangel@outlook.com",
+    "url": "https://ahmedrangel.com"
+  },
+  "contributors": [
+    "Ahmed Rangel <ahmedrangel@outlook.com>"
+  ],
+  "homepage": "https://github.com/ahmedrangel/leaguetab",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedrangel/leaguetab.git"
+  },
+  "bugs": "https://github.com/ahmedrangel/leaguetab/issues",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port=5173 --public",
+    "generate": "nuxt generate",
+    "preview": "wrangler dev",
+    "postinstall": "nuxt prepare",
+    "analyze": "nuxt analyze",
+    "lint": "node --run lint:eslint && node --run lint:stylelint",
+    "lint:fix": "node --run lint:eslint --fix && node --run lint:stylelint --fix",
+    "lint:eslint": "eslint --config .config/eslint.mjs",
+    "lint:eslint:inspect": "pnpx @eslint/config-inspector --config .config/eslint.mjs",
+    "lint:stylelint": "stylelint \"**/*.{css,scss}\" --config .config/stylelint.json",
+    "test:types": "vue-tsc -b --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260919.1",
+    "@nuxt/eslint": "^1.17.0",
+    "@nuxt/ui": "^4.11.1",
+    "@nuxthub/core": "^0.10.8",
+    "@nuxtjs/sitemap": "^8.5.1",
+    "@twurple/api": "^8.2.0",
+    "@twurple/auth": "^8.2.0",
+    "@types/node": "^26.6.1",
+    "crossws": "^0.4.12",
+    "eslint": "^10.10.0",
+    "nuxt": "^4.5.2",
+    "nuxt-ui-colors-no-inline": "^0.0.6",
+    "sass-embedded": "^1.104.1",
+    "stylelint": "^17.15.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.11",
+    "wrangler": "^4.134.0"
+  },
+	"packageManager": "pnpm@12.4.2"
+}

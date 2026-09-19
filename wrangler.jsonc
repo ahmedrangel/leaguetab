@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "leaguetab",
+  "compatibility_date": "2026-09-19",
+  "main": ".output/server/index.mjs",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "routes": [
+    {
+      "pattern": "leaguetab.ahmedrangel.com",
+      "custom_domain": true
+    }
+  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".output/public"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "e79731b9ae1f4409a78ece185c51ebf8"
+    }
+  ]
+}
