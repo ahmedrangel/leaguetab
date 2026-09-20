@@ -1,3 +1,11 @@
+<script setup lang="ts">
+useHead({
+  title: "League Scoreboard"
+});
+</script>
+
 <template>
-  <h1>Hello World</h1>
+  <main>
+    <ScoreboardMain />
+  </main>
 </template>
