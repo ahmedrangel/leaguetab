@@ -3,11 +3,28 @@ const { user, loggedIn } = useUserSession();
 if (!loggedIn.value) {
   navigateTo("/");
 }
+const { session } = useRoute().query;
+const loading = ref(true);
+const verified = ref(false);
+
+onMounted(async () => {
+  verified.value = await $fetch(`${SITE.localhost}/auth/session`, { method: "POST", body: { session } });
+  loading.value = false;
+});
 </script>
 
 <template>
-  <div v-if="user && loggedIn" class="w-dvw h-dvh flex flex-col items-center justify-center gap-4">
-    <span class="text-4xl font-semibold">Hello, {{ user.displayName }}! You are now logged in.</span>
-    <span class="text-xl">You can close this page.</span>
-  </div>
+  <main class="text-center overflow-hidden w-dvw h-dvh flex flex-col items-center justify-center gap-4">
+    <template v-if="loading">
+      <span class="text-4xl font-semibold">Verifying session...</span>
+    </template>
+    <template v-else-if="user && loggedIn && verified">
+      <span class="text-4xl font-semibold">Hello, {{ user.displayName }}! You are now logged in.</span>
+      <span class="text-xl">You can close this page.</span>
+    </template>
+    <template v-else-if="!verified">
+      <span class="text-4xl font-semibold">Session verification failed.</span>
+      <span class="text-xl">Make sure the local service is running and try again.</span>
+    </template>
+  </main>
 </template>
