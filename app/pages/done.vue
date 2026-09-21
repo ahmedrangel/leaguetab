@@ -3,12 +3,12 @@ const { user, loggedIn } = useUserSession();
 if (!loggedIn.value) {
   navigateTo("/");
 }
-const { session } = useRoute().query;
 const loading = ref(true);
 const verified = ref(false);
 
 onMounted(async () => {
-  verified.value = await $fetch(`${SITE.localhost}/auth/session`, { method: "POST", body: { session } });
+  const response = await $fetch<{ verified: boolean }>(`${SITE.localhost}/verify`, { method: "POST" }).catch(() => null);
+  verified.value = response?.verified ?? false;
   loading.value = false;
 });
 </script>
