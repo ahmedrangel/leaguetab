@@ -8,11 +8,11 @@ export default defineEventHandler(async (event) => {
   console.info(config.twitch.clientId);
   const authProvider = new StaticAuthProvider(config.twitch.clientId, accessToken);
   const api = new ApiClient({ authProvider });
-  const user = await api.callApi<{ data: { id: string, display_name: string }[] }>({ type: "helix", url: "/users" }).catch(() => null);
+  const user = await api.callApi<{ data: { id: string, login: string }[] }>({ type: "helix", url: "/users" }).catch(() => null);
   const authenticatedUser = user?.data?.[0];
   if (!authenticatedUser || authenticatedUser.id !== id) {
     throw createError({ status: 401, message: "Unauthorized" });
   }
-  await kv.set(id, url);
+  await kv.set(authenticatedUser.login, url);
   return { synced: true };
 });

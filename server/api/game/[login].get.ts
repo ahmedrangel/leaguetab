@@ -1,9 +1,9 @@
 export default defineEventHandler(async (event) => {
-  const { id } = getRouterParams(event);
-  if (!id) {
-    throw createError({ status: 400, message: "Missing id" });
+  const { login } = getRouterParams(event);
+  if (!login) {
+    throw createError({ status: 400, message: "Missing login" });
   }
-  const target = await kv.get<string>(id);
+  const target = await kv.get<string>(login);
   if (!target) {
     throw createError({ status: 404, message: "Target not found" });
   }

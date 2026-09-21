@@ -2,11 +2,11 @@
 useHead({
   title: "League Scoreboard"
 });
-const { id } = useRoute("game-id").params;
+const { login } = useRoute("game-login").params;
 const data = ref<GameData | null>(null);
 onMounted(async () => {
   const protocol = import.meta.dev ? "ws" : "wss";
-  const wss = new WebSocket(`${protocol}://${SITE.domain}/ws/${id}`);
+  const wss = new WebSocket(`${protocol}://${SITE.domain}/ws/${login}`);
   wss.onmessage = (event) => {
     try {
       const { data: parsedData } = JSON.parse(event.data);
