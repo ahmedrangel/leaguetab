@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@nuxtjs/sitemap",
     "@nuxthub/core",
-    "nuxt-ui-colors-no-inline"
+    "nuxt-ui-colors-no-inline",
+    "nuxt-auth-utils"
   ],
 
   $production: {
@@ -72,11 +73,7 @@ export default defineNuxtConfig({
     }
   },
 
-  runtimeConfig: {
-    twitch: {
-      clientId: ""
-    }
-  },
+  runtimeConfig: {},
 
   features: {
     inlineStyles: false
