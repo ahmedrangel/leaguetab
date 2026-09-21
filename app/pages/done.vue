@@ -17,6 +17,7 @@ onMounted(async () => {
     });
   }
   loading.value = false;
+  window.close();
 });
 </script>
 
