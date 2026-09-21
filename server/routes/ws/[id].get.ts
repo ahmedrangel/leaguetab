@@ -6,13 +6,11 @@ const proxy = createWebSocketProxy({
     const { pathname } = new URL(peer.request.url);
     const id = pathname.split("/").filter(Boolean).pop();
     if (!id) {
-      peer.close(1008, "Missing id");
-      return "";
+      throw new Error("Missing id");
     }
     const target = await kv.get<string>(id);
     if (!target) {
-      peer.close(1008, "Target not found");
-      return "";
+      throw new Error("Target not found");
     }
     return target.replace(/^https:/, "wss:");
   }
