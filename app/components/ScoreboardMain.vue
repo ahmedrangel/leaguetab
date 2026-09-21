@@ -2,8 +2,8 @@
 const props = defineProps<{
   data: GameData;
 }>();
-const bluePlayers = props.data.players.filter(player => player.team === "blue");
-const redPlayers = props.data.players.filter(player => player.team === "red");
+const bluePlayers = computed(() => props.data.players.filter(player => player.team === "blue"));
+const redPlayers = computed(() => props.data.players.filter(player => player.team === "red"));
 
 onMounted(() => {
   adjustScale(document, "scoreboard");
@@ -16,7 +16,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="scoreboard" class="overflow-hidden border border-slate-600/70 text-slate-200">
-    <ScoreboardTeamStatsHeader :teams="data.teams" />
+    <ScoreboardTeamStatsHeader :teams="data.teams" :game="data.game" />
     <div class="grid grid-cols-2">
       <section class="min-w-0 border-r border-slate-500/40">
         <ScoreboardPlayerRow :players="bluePlayers" />

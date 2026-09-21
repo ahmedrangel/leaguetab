@@ -1,11 +1,10 @@
-<script setup lang="ts">
-useHead({
-  title: "League Scoreboard"
-});
-</script>
-
 <template>
-  <main>
-    <ScoreboardMain :data="testPayload" />
-  </main>
+  <div>
+    <NuxtLoadingIndicator :throttle="0" />
+    <UApp>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </UApp>
+  </div>
 </template>

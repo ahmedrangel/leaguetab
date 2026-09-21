@@ -1,7 +1,7 @@
 export const SITE = {
   main: "ahmedrangel",
   name: "LeagueTab",
-  domain: "leaguetab.ahmedrangel.com",
+  domain: import.meta.dev ? "localhost:5173" : "leaguetab.ahmedrangel.com",
   host: "https://leaguetab.ahmedrangel.com",
   description: "",
   logo: "/images/leaguetab.png",
