@@ -1,28 +1,32 @@
 <script setup lang="ts">
 const props = defineProps<{
   players: Player[];
+  cdn: string;
+  version: string;
 }>();
 
-const playersData = computed(() => props.players);
+const players = computed(() => props.players);
+const cdn = computed(() => props.cdn);
+const version = computed(() => props.version);
 </script>
 
 <template>
-  <div v-for="player in playersData" :key="player.riotIdGameName" class="scoreboard__row flex items-center justify-between border-b border-slate-500/20 p-3 gap-3" :class="{ 'bg-red-800/20': player.isDead }">
+  <div v-for="player in players" :key="player.riotIdGameName" class="scoreboard__row flex items-center justify-between border-b border-slate-500/20 p-3 gap-3" :class="{ 'bg-red-800/20': player.isDead }">
     <div class="order-1 flex gap-1">
       <div class="flex shrink-0 flex-col gap-1">
         <div v-for="spell in Object.values(player.summonerSpells)" :key="`${player.riotIdGameName}-${spell.displayName}`" class="h-10 w-10 overflow-hidden">
-          <img v-if="spell" :src="spell.iconURL" alt="" class="h-full w-full object-cover" :title="spell.displayName">
+          <img v-if="spell" :src="getSummonerSpellIcon(cdn, version, spell.iconURL)" alt="" class="h-full w-full object-cover" :title="spell.displayName">
         </div>
       </div>
       <div class="flex shrink-0 flex-col gap-1">
         <div v-for="rune in [player.runes.keystone, player.runes.secondaryRuneTree]" :key="`${player.riotIdGameName}-${rune.displayName}`" class="h-10 w-10 overflow-hidden">
-          <img v-if="rune" :src="rune.iconURL" alt="" class="h-full w-full object-cover" :title="rune.displayName">
+          <img v-if="rune" :src="getRuneIcon(cdn, rune.iconURL)" alt="" class="h-full w-full object-cover" :title="rune.displayName">
         </div>
       </div>
     </div>
     <div class="order-3 relative shrink-0">
       <img
-        :src="player.champion.iconURL"
+        :src="getChampionIcon(cdn, version, player.champion.iconURL)"
         :class="[
           'h-24 w-24 rounded-full border-2 border-slate-300/80 object-cover',
           { grayscale: player.isDead },
@@ -50,7 +54,7 @@ const playersData = computed(() => props.players);
         <div v-for="slot in 7" :key="`${player.riotIdGameName}-item-${slot}`" class="relative h-16 w-16 border border-slate-600/60 bg-slate-950">
           <img
             v-if="player.items.find(item => item.slot === slot - 1)"
-            :src="player.items.find(item => item.slot === slot - 1)?.iconURL"
+            :src="getItemIcon(cdn, version, player.items.find(item => item.slot === slot - 1)!.iconURL)"
             :title="player.items.find(item => item.slot === slot - 1)?.displayName"
             class="h-full w-full object-cover"
           >

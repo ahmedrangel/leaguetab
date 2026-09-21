@@ -19,10 +19,10 @@ onBeforeUnmount(() => {
     <ScoreboardTeamStatsHeader :teams="data.teams" :game="data.game" />
     <div class="grid grid-cols-2">
       <section class="min-w-0 border-r border-slate-500/40">
-        <ScoreboardPlayerRow :players="bluePlayers" />
+        <ScoreboardPlayerRow :players="bluePlayers" :cdn="data.resources.cdn" :version="data.game.version" />
       </section>
       <section class="min-w-0">
-        <ScoreboardPlayerRow :players="redPlayers" />
+        <ScoreboardPlayerRow :players="redPlayers" :cdn="data.resources.cdn" :version="data.game.version" />
       </section>
     </div>
   </div>

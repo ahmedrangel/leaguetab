@@ -1,8 +1,12 @@
 declare global {
   interface GameData {
     game: {
+      version: string;
       started: boolean;
       dragonSoul: string;
+    };
+    resources: {
+      cdn: string;
     };
     players: Player[];
     teams: {
