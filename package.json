@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "leaguetab",
+  "name": "lolscoreboard",
   "version": "1.0.0",
-  "description": "LeagueTab",
+  "description": "LoLScoreboard",
   "type": "module",
   "license": "MIT",
   "author": {
@@ -13,12 +13,12 @@
   "contributors": [
     "Ahmed Rangel <ahmedrangel@outlook.com>"
   ],
-  "homepage": "https://github.com/ahmedrangel/leaguetab",
+  "homepage": "https://github.com/ahmedrangel/lolscoreboard",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahmedrangel/leaguetab.git"
+    "url": "git+https://github.com/ahmedrangel/lolscoreboard.git"
   },
-  "bugs": "https://github.com/ahmedrangel/leaguetab/issues",
+  "bugs": "https://github.com/ahmedrangel/lolscoreboard/issues",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --port=5173 --public",

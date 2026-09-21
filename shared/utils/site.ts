@@ -1,10 +1,10 @@
 export const SITE = {
   main: "ahmedrangel",
-  name: "LeagueTab",
-  domain: import.meta.dev ? "localhost:5173" : "leaguetab.ahmedrangel.com",
-  host: "https://leaguetab.ahmedrangel.com",
+  name: "LoLScoreboard",
+  domain: import.meta.dev ? "localhost:5173" : "lolscoreboard.ahmedrangel.com",
+  host: "https://lolscoreboard.ahmedrangel.com",
   description: "",
-  logo: "/images/leaguetab.png",
+  logo: "/images/lolscoreboard.png",
   github: {
     authors: {
       ahmed: {
@@ -16,6 +16,6 @@ export const SITE = {
         url: "https://github.com/yizack"
       }
     },
-    repository: "https://github.com/ahmedrangel/leaguetab"
+    repository: "https://github.com/ahmedrangel/lolscoreboard"
   }
 };
