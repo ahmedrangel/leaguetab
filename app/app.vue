@@ -6,6 +6,6 @@ useHead({
 
 <template>
   <main>
-    <ScoreboardMain />
+    <ScoreboardMain :data="testPayload" />
   </main>
 </template>

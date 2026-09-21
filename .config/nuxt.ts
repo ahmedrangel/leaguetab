@@ -97,7 +97,7 @@ export default defineNuxtConfig({
     cloudflare: {
       pages: {
         routes: {
-          exclude: ["/images/*"]
+          exclude: ["/images/*", "/icons/*"]
         }
       }
     },
