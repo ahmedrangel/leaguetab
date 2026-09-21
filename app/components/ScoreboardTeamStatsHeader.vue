@@ -42,6 +42,7 @@ const redDragons = computed(() => props.teams.red.dragonTypes?.filter(type => ty
 const maxDragons = 4;
 
 const dragonSoul = computed(() => blueDragons.value.length > maxDragons - 1 || redDragons.value.length > maxDragons - 1 ? dragonSoulsIconMap.find(item => item.type === props.game.dragonSoul) : null);
+const dragonSoulNotConsumed = computed(() => blueDragons.value.length <= maxDragons - 1 && redDragons.value.length <= maxDragons - 1 && props.game.dragonSoul ? dragonSoulsIconMap.find(item => item.type === props.game.dragonSoul) : null);
 </script>
 
 <template>
@@ -60,7 +61,7 @@ const dragonSoul = computed(() => blueDragons.value.length > maxDragons - 1 || r
     </div>
     <div class="mx-6 flex h-16 w-16 rotate-45 items-center justify-center border-2 border-slate-300/80 bg-slate-950 overflow-hidden">
       <span class="-rotate-45">
-        <img v-if="dragonSoul" :src="dragonSoul?.icon" class="h-full w-full scale-110" :title="dragonSoul?.title">
+        <img v-if="dragonSoul || dragonSoulNotConsumed" :src="dragonSoul?.icon || dragonSoulNotConsumed?.icon" class="h-full w-full scale-110" :class="{ grayscale: !dragonSoul && dragonSoulNotConsumed }" :title="dragonSoul?.title || dragonSoulNotConsumed?.title">
       </span>
     </div>
 
