@@ -4,10 +4,11 @@ export default defineEventHandler(async (event) => {
   if (!sid || !state) {
     return { verified: false };
   }
-  const verification = await kv.get<{ user: User, state: string }>(`verification:${sid}`);
+  const key = `sid:${sid}`;
+  const verification = await kv.get<{ user: User, state: string }>(key);
   if (!verification || verification.state !== state) {
     return { verified: false };
   }
-  await kv.del(`verification:${sid}`);
+  await kv.del(key);
   return { verified: true, user: verification.user };
 });
