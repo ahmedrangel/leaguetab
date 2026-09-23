@@ -73,7 +73,12 @@ export default defineNuxtConfig({
     }
   },
 
-  runtimeConfig: {},
+  runtimeConfig: {
+    session: {
+      password: "",
+      maxAge: 60 * 60 * 24 * 30 // 30 days
+    }
+  },
 
   features: {
     inlineStyles: false
