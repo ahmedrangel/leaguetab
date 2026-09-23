@@ -15,10 +15,10 @@ export default defineOAuthTwitchEventHandler({
       throw createError({ statusCode: 400, statusMessage: "Proxy URL or state not found." });
     }
     kv.set(result.user.login, proxyURL);
-    const verificationId = randomUUID();
-    kv.set(`verification:${verificationId}`, { user, state: proxyState }, { ttl: 600 });
+    const sid = randomUUID();
+    kv.set(`sid:${sid}`, { user, state: proxyState }, { ttl: 600 });
     deleteCookie(event, "nuxt-websocket-proxy-url");
     deleteCookie(event, "nuxt-websocket-proxy-state");
-    return sendRedirect(event, withQuery("/done", { sid: verificationId }));
+    return sendRedirect(event, withQuery("/done", { sid }));
   }
 });
