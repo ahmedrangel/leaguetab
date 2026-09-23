@@ -3,7 +3,7 @@ export const SITE = {
   name: "LoLScoreboard",
   domain: import.meta.dev ? "localhost:5173" : "lolscoreboard.ahmedrangel.com",
   host: "https://lolscoreboard.ahmedrangel.com",
-  localhost: "http://127.0.0.1:31537",
+  localhost: "http://localhost:31537",
   description: "",
   logo: "/images/lolscoreboard.png",
   github: {

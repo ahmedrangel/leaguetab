@@ -1,3 +1,5 @@
+import type { User as AuthUser } from "#auth-utils";
+
 declare global {
   interface GameData {
     game: {
@@ -77,6 +79,8 @@ declare global {
     barons: number;
     turrets: number;
   }
+
+  type User = AuthUser;
 }
 
 export {};
