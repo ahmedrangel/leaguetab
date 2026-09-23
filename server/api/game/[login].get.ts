@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   if (!target) {
     throw createError({ status: 404, message: "Target not found" });
   }
-  const data = await $fetch(target).catch(() => null);
+  const data = await $fetch<GameData>(target).catch(() => null);
   if (!data) {
     throw createError({ status: 404, message: "Data not found" });
   }
