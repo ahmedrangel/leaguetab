@@ -1,45 +1,40 @@
 <script setup lang="ts">
+import { useWindowSize } from "@vueuse/core";
+
 const props = defineProps<{
   data: GameData;
 }>();
+
+const { width } = useWindowSize();
+const scale = computed(() => width.value / 1920);
+
 const bluePlayers = computed(() => props.data.players.filter(player => player.team === "blue"));
 const redPlayers = computed(() => props.data.players.filter(player => player.team === "red"));
-
-onMounted(() => {
-  adjustScale(document, "scoreboard");
-  window.addEventListener("resize", () => adjustScale(document, "scoreboard"));
-});
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", () => adjustScale(document, "scoreboard"));
-});
 </script>
 
 <template>
-  <div id="scoreboard" class="overflow-hidden border border-slate-600/70 text-slate-200">
-    <ScoreboardTeamStatsHeader :teams="data.teams" :game="data.game" />
-    <div class="grid grid-cols-2">
-      <section class="min-w-0 border-r border-slate-500/40">
-        <ScoreboardPlayerRow :players="bluePlayers" :cdn="data.resources.cdn" :version="data.game.version" />
-      </section>
-      <section class="min-w-0">
-        <ScoreboardPlayerRow :players="redPlayers" :cdn="data.resources.cdn" :version="data.game.version" />
-      </section>
+  <ClientOnly>
+    <div
+      id="scoreboard"
+      class="overflow-hidden border border-slate-600/70 text-slate-200 -translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 w-[1920px]"
+      :style="{ transform: `scale(${scale})` }"
+    >
+      <ScoreboardTeamStatsHeader :teams="data.teams" :game="data.game" />
+      <div class="grid grid-cols-2">
+        <section class="min-w-0 border-r border-slate-500/40">
+          <ScoreboardPlayerRow :players="bluePlayers" :cdn="data.resources.cdn" :version="data.game.version" />
+        </section>
+        <section class="min-w-0">
+          <ScoreboardPlayerRow :players="redPlayers" :cdn="data.resources.cdn" :version="data.game.version" />
+        </section>
+      </div>
     </div>
-  </div>
+  </ClientOnly>
 </template>
 
 <style scoped>
 #scoreboard {
   background: linear-gradient(90deg, rgba(16, 27, 49, 0.97) 0%, rgba(12, 29, 29, 0.8) 50%, rgba(30, 13, 18, 0.96) 100%);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 1920px;
-  overflow: hidden;
 }
 
 .scoreboard__top {
