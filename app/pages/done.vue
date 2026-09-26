@@ -7,12 +7,17 @@ const loading = ref(true);
 const verified = ref(false);
 const { sid } = useRoute().query;
 
+onBeforeMount(() => {
+  window.history.replaceState({}, document.title, window.location.pathname);
+});
+
 onMounted(async () => {
   // Verify with the local service using the session ID (sid)
   const response = await $fetch<{ verified: boolean }>(`${SITE.localhost}/verify`, { method: "POST", body: { sid: sid } }).catch(() => null);
   verified.value = response?.verified ?? false;
   if (!verified.value) {
     throw createError({
+      fatal: true,
       status: 503,
       statusText: "Service Unavailable",
       message: "Session verification failed. Make sure the local service is running and try again."
